@@ -1,8 +1,10 @@
-import 'package:experiment4/foodapp.dart';
-import 'package:experiment4/signin.dart';
+import 'package:experiment4/pages/foodapp.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'signin.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

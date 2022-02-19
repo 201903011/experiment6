@@ -1,9 +1,13 @@
 import 'dart:convert';
 
+import 'package:experiment4/pages/details.dart';
+import 'package:experiment4/pages/settings.dart';
+import 'package:experiment4/widgets/pod_img_net.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../model/catalog.dart';
+import '../widgets/prod_img.dart';
 import 'Mydrawer.dart';
 import '../widgets/cardtile.dart';
 
@@ -16,7 +20,7 @@ class FoodApp extends StatefulWidget {
 
 class _FoodAppState extends State<FoodApp> {
   @override
-  void initState() async {
+  void initState() {
     // TODO: implement initState
     loadData();
   }
@@ -30,6 +34,7 @@ class _FoodAppState extends State<FoodApp> {
     CatalogModel.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
+    print(CatalogModel.items);
     setState(() {});
   }
 
@@ -59,62 +64,60 @@ class _FoodAppState extends State<FoodApp> {
           ),
         ],
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/myfood.jpeg',
-                    ),
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/icecream.jpeg',
-                    ),
-                  ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
                 ),
-                Row(
-                  children: [
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/food.jpeg',
+                itemBuilder: (context, index) {
+                  final item = CatalogModel.items[index];
+                  return InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Details(item1: item),
+                      ),
                     ),
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/juice.jpeg',
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: GridTile(
+                        header: Container(
+                          child: Text(
+                            item.name,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                          ),
+                        ),
+                        child: Prod_Img(image: item.image, h: 25, w: 25),
+                        footer: Container(
+                          child: Text(
+                            item.price.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/myfood.jpeg',
-                    ),
-                    Prod1(
-                      w1: width - 16,
-                      im: 'assets/images/icecream.jpeg',
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(26.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('You are submitted')));
-                    },
-                    child: Text("Submit"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+                  );
+                },
+                itemCount: CatalogModel.items.length,
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       backgroundColor: Colors.indigo.shade50,
     );
