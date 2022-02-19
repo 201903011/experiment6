@@ -1,4 +1,4 @@
-import 'package:experiment4/foodapp.dart';
+import 'package:experiment4/pages/foodapp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';

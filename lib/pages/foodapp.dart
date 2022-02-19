@@ -1,10 +1,37 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import '../model/catalog.dart';
 import 'Mydrawer.dart';
-import 'cardtile.dart';
+import '../widgets/cardtile.dart';
 
-class FoodApp extends StatelessWidget {
+class FoodApp extends StatefulWidget {
   const FoodApp({Key? key}) : super(key: key);
+
+  @override
+  State<FoodApp> createState() => _FoodAppState();
+}
+
+class _FoodAppState extends State<FoodApp> {
+  @override
+  void initState() async {
+    // TODO: implement initState
+    loadData();
+  }
+
+  loadData() async {
+    var catalogjson = await rootBundle.loadString("assets/files/catalog.json");
+    var decodedata = jsonDecode(catalogjson);
+    var productsData = decodedata["products"];
+
+    // ignore: unused_local_variable
+    CatalogModel.items = List.from(productsData)
+        .map<Item>((item) => Item.fromMap(item))
+        .toList();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

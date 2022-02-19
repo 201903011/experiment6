@@ -1,10 +1,10 @@
-import 'package:experiment4/login.dart';
-import 'package:experiment4/settings.dart';
+import 'package:experiment4/pages/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'foodapp.dart';
+import 'settings.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
