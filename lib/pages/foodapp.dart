@@ -45,7 +45,8 @@ class _FoodAppState extends State<FoodApp> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: const Text('Food App'),
+        backgroundColor: Colors.black,
+        title: const Text('Catalog App'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add_shopping_cart),
@@ -95,10 +96,10 @@ class _FoodAppState extends State<FoodApp> {
                           ),
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.black,
                           ),
                         ),
-                        child: Prod_Img(image: item.image, h: 25, w: 25),
+                        child: Image.network(item.image),
                         footer: Container(
                           child: Text(
                             item.price.toString(),
@@ -119,7 +120,7 @@ class _FoodAppState extends State<FoodApp> {
                 child: CircularProgressIndicator(),
               ),
       ),
-      backgroundColor: Colors.indigo.shade50,
+      backgroundColor: Color.fromARGB(221, 112, 112, 112),
     );
   }
 }

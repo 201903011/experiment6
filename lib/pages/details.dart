@@ -18,6 +18,7 @@ class _DetailsState extends State<Details> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           title: Text(widget.item1.name),
           actions: <Widget>[
             IconButton(
@@ -33,7 +34,7 @@ class _DetailsState extends State<Details> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Prod_Img(image: widget.item1.image, h: 250, w: 450),
+              Image.network(widget.item1.image),
               SizedBox(height: 5),
               Text(
                 widget.item1.name,
@@ -84,6 +85,9 @@ class _DetailsState extends State<Details> {
               ),
               ElevatedButton(
                   onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                  ),
                   child: Row(
                     children: [
                       Icon(Icons.add_shopping_cart),

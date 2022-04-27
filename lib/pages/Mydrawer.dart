@@ -2,6 +2,7 @@ import 'package:experiment4/pages/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:velocity_x/velocity_x.dart';
 
 import 'foodapp.dart';
 import 'settings.dart';
@@ -19,8 +20,9 @@ class _MyDrawerState extends State<MyDrawer> {
     final imageUrl =
         "https://avatars.githubusercontent.com/u/72931833?s=96&v=4";
     return Drawer(
+      backgroundColor: Colors.black,
       child: Container(
-        color: Colors.blue.shade900,
+        color: Colors.black,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -28,11 +30,12 @@ class _MyDrawerState extends State<MyDrawer> {
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
                 margin: EdgeInsets.zero,
-                accountName: Text("Rahul Gaikwad"),
-                accountEmail: Text("rahul@gmail.com"),
+                accountName: Text("Aditya Bohade"),
+                accountEmail: Text("aditya@gmail.com"),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(imageUrl),
                 ),
+                decoration: BoxDecoration(color: Colors.black),
               ),
             ),
             InkWell(

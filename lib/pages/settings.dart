@@ -8,9 +8,13 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
-      backgroundColor: Colors.indigo.shade50,
+      backgroundColor: Colors.black87,
       appBar: AppBar(
-        title: const Text('Settings'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Settings',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Center(
         child: ElevatedButton(
